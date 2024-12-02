@@ -22,7 +22,7 @@ struct GalleryTabs: View {
                     Text("No selected gallery")
                 }
                 else {
-                    
+                    GalleryContentView()
                 }
                
             } label: {

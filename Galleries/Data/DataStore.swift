@@ -11,6 +11,8 @@ import Foundation
 class DataStore {
     var galleries : Galleries
     var selectedGallery : Gallery?
+    var selectedArtist : Artist?
+    var selectedArtwork : Artwork?
     
     init() {
         galleries = load("galleries.json")

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GalleryTabs: View {
     @State var dataStore = DataStore()
+    @State var pathStore = PathStore()
     var body: some View {
         TabView {
             Tab {
@@ -37,7 +38,7 @@ struct GalleryTabs: View {
                 
             }
 
-        }.environment(dataStore)
+        }.environment(dataStore).environment(pathStore)
     }
 }
 

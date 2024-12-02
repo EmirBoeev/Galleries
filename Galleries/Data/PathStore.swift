@@ -6,7 +6,7 @@
 //
 
 import Foundation
-enum Route {
+enum Route: Hashable {
     case gallery(Gallery)
     case artist(Artist)
     case artwork(Artwork)

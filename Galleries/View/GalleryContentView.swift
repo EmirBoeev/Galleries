@@ -14,15 +14,14 @@ struct GalleryContentView: View {
         @Bindable var _dataStore = dataStore
         @Bindable var _pathStore = pathStore
         VStack {
-            Text(_dataStore.selectedGallery!.name).foregroundStyle(Color("TextColor")).font(.title)
-            Divider().foregroundStyle(Color("TextColor"))
-            Text(_dataStore.selectedGallery!.location)
-            Text(_dataStore.selectedGallery!.description).foregroundStyle(.gray).font(.system(size: 10))
-            Divider().foregroundStyle(Color("TextColor"))
-            //Divider().foregroundStyle(Color("TextColor"))
-            Text("List of artists").foregroundStyle(Color("TextColor"))
-            VStack {
                 NavigationStack(path: $_pathStore.path) {
+                    Text(_dataStore.selectedGallery!.name).foregroundStyle(Color("TextColor")).font(.title)
+                    Divider().foregroundStyle(Color("TextColor"))
+                    Text(_dataStore.selectedGallery!.location)
+                    Text(_dataStore.selectedGallery!.description).foregroundStyle(.gray).font(.system(size: 10))
+                    Divider().foregroundStyle(Color("TextColor"))
+                    //Divider().foregroundStyle(Color("TextColor"))
+                    Text("List of artists").foregroundStyle(Color("TextColor"))
                     List(_dataStore.selectedGallery!.artists, id: \.self, selection: $_dataStore.selectedArtist) { artist in
                         
                         NavigationLink(value: Route.artist(artist)) {
@@ -40,9 +39,9 @@ struct GalleryContentView: View {
                         case .gallery(let gallery):
                             Text("Gallery")
                         case .artwork(let artwork):
-                            Text("Artwork")
+                            ArtworkContentView()
                         }
-                }
+                
                 }
                 
             }

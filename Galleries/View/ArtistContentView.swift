@@ -9,26 +9,46 @@ import SwiftUI
 
 struct ArtistContentView: View {
     @Environment(DataStore.self) var dataStore
+    @Environment(PathStore.self) var pathStore
     var body: some View {
         @Bindable var _dataStore = dataStore
-        
-        VStack {
-            Text(_dataStore.selectedArtist!.name).foregroundStyle(Color("TextColor")).font(.title)
-            Divider().foregroundStyle(Color("TextColor"))
-            Text(_dataStore.selectedArtist!.nationality)
-            Text(_dataStore.selectedArtist!.description).foregroundStyle(.gray).font(.system(size: 10))
-            Divider().foregroundStyle(Color("TextColor"))
-            //Divider().foregroundStyle(Color("TextColor"))
-            Text("List of art").foregroundStyle(Color("TextColor"))
+        @Bindable var _pathStore = pathStore
+       
             VStack {
-                List(_dataStore.selectedArtist!.artworks, id: \.self, selection: $_dataStore.selectedArtwork) { art in
-                    VStack {
-                        Text(art.title)
-                        Text(art.description).foregroundStyle(.gray).frame(width: 100).truncationMode(.tail)
-                    }
+                NavigationStack(path: $_pathStore.path) {
+                if _dataStore.selectedArtist != nil {
+                    Text(_dataStore.selectedArtist!.name).foregroundStyle(Color("TextColor")).font(.title)
+                    Divider().foregroundStyle(Color("TextColor"))
+                    Text(_dataStore.selectedArtist!.nationality)
+                    Text(_dataStore.selectedArtist!.description).foregroundStyle(.gray).font(.system(size: 10))
+                    Divider().foregroundStyle(Color("TextColor"))
+                    //Divider().foregroundStyle(Color("TextColor"))
+                    Text("List of art").foregroundStyle(Color("TextColor"))
+                 
+                        List(_dataStore.selectedArtist!.artworks, id: \.self, selection: $_dataStore.selectedArtwork) { art in
+                            NavigationLink(value: Route.artwork(art)) {
+                                VStack {
+                                    Text(art.title)
+                                    Text(art.description).foregroundStyle(.gray).truncationMode(.tail)
+                                }
+                            }
+                            
+                            
+                        }.padding(20).cornerRadius(50).navigationDestination(for: Route.self) { route in
+                            switch route {
+                            case .gallery(let gallery):
+                                Text("Gallery")
+                            case .artist(let artist):
+                                ArtistContentView()
+                            case .artwork(let artwork):
+                                ArtworkContentView()
+                            }
+                        }
                     
-                }.padding(20).cornerRadius(50)
-            }
+                }
+        }
+        
+            
         }
         
     }

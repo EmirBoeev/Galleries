@@ -16,6 +16,8 @@ struct ArtistContentView: View {
 
             VStack {
                 NavigationStack(path: $_pathStore.path) {
+                    
+                
                 if _dataStore.selectedArtist != nil {
                     Text(_dataStore.selectedArtist!.name).foregroundStyle(Color("TextColor")).font(.title)
                     Divider().foregroundStyle(Color("TextColor"))
@@ -35,25 +37,28 @@ struct ArtistContentView: View {
                             }
                             
                             
-                        }.padding(20).cornerRadius(50).navigationDestination(for: Route.self) { route in
+                        }.navigationDestination(for: Route.self) { route in
                             switch route {
-                            case .gallery(let gallery):
-                                GallerySelectionView()
                             case .artist(let artist):
                                 ArtistContentView()
+                            case .gallery(let gallery):
+                                GallerySelectionView()
                             case .artwork(let artwork):
                                 ArtworkContentView()
                             }
-                        }
+
+                            }
                     
                 }
-        }
+                }
+                }
+        
         
             
         }
         
     }
-}
+
 
 #Preview {
     ArtistContentView()

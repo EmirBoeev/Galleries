@@ -37,7 +37,7 @@ struct GalleryContentView: View {
                         case .artist(let artist):
                             ArtistContentView()
                         case .gallery(let gallery):
-                            Text("Gallery")
+                            GallerySelectionView()
                         case .artwork(let artwork):
                             ArtworkContentView()
                         }

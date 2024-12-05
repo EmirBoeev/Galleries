@@ -9,16 +9,27 @@ import Foundation
 
 @Observable
 class DataStore {
+    private var pathStore = PathStore()
     var galleries : Galleries
     private var _selectedGallery : Gallery?
    
-    var selectedArtist : Artist?
+    private var _selectedArtist : Artist?
     var selectedArtwork : Artwork?
     
     init() {
         galleries = load("galleries.json")
     }
     
+    
+    var selectedArtist: Artist? {
+        get {
+            return _selectedArtist
+        }
+        set {
+            _selectedArtist = newValue
+            
+        }
+    }
     var selectedGallery : Gallery? {
         get {
             return _selectedGallery
@@ -26,6 +37,7 @@ class DataStore {
         
         set {
             _selectedGallery = newValue
+            pathStore.resetPath()
         }
     }
     

@@ -13,11 +13,6 @@ struct ArtistContentView: View {
     var body: some View {
         @Bindable var _dataStore = dataStore
         @Bindable var _pathStore = pathStore
-        Button {
-            _dataStore.printArtist()
-        } label: {
-            Text("test")
-        }
 
             VStack {
                 NavigationStack(path: $_pathStore.path) {
@@ -25,6 +20,7 @@ struct ArtistContentView: View {
                     Text(_dataStore.selectedArtist!.name).foregroundStyle(Color("TextColor")).font(.title)
                     Divider().foregroundStyle(Color("TextColor"))
                     Text(_dataStore.selectedArtist!.nationality)
+                    Text(_dataStore.selectedArtist!.style)
                     Text(_dataStore.selectedArtist!.description).foregroundStyle(.gray).font(.system(size: 10))
                     Divider().foregroundStyle(Color("TextColor"))
                     //Divider().foregroundStyle(Color("TextColor"))
@@ -42,7 +38,7 @@ struct ArtistContentView: View {
                         }.padding(20).cornerRadius(50).navigationDestination(for: Route.self) { route in
                             switch route {
                             case .gallery(let gallery):
-                                Text("Gallery")
+                                GallerySelectionView()
                             case .artist(let artist):
                                 ArtistContentView()
                             case .artwork(let artwork):

@@ -16,12 +16,7 @@ struct ArtworkContentView: View {
        // @Bindable var _pathStore = pathStore
         VStack {
             if _dataStore.selectedArtwork != nil {
-                Button {
-                    _dataStore.printArtist()
-                } label: {
-                    Text("test")
-                }
-
+                
                 Text(_dataStore.selectedArtwork!.title).foregroundStyle(Color("TextColor")).font(.title)
                 Divider().foregroundStyle(Color("TextColor"))
                 Text(_dataStore.selectedArtwork!.medium)

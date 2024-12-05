@@ -13,7 +13,12 @@ struct ArtistContentView: View {
     var body: some View {
         @Bindable var _dataStore = dataStore
         @Bindable var _pathStore = pathStore
-       
+        Button {
+            _dataStore.printArtist()
+        } label: {
+            Text("test")
+        }
+
             VStack {
                 NavigationStack(path: $_pathStore.path) {
                 if _dataStore.selectedArtist != nil {

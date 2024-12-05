@@ -10,7 +10,8 @@ import Foundation
 @Observable
 class DataStore {
     var galleries : Galleries
-    var selectedGallery : Gallery?
+    private var _selectedGallery : Gallery?
+   
     var selectedArtist : Artist?
     var selectedArtwork : Artwork?
     
@@ -18,5 +19,17 @@ class DataStore {
         galleries = load("galleries.json")
     }
     
+    var selectedGallery : Gallery? {
+        get {
+            return _selectedGallery
+        }
+        
+        set {
+            _selectedGallery = newValue
+        }
+    }
     
+    func printArtist() {
+        print(selectedArtist)
+    }
 }

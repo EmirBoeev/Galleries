@@ -15,7 +15,7 @@ struct ArtistContentView: View {
         @Bindable var _pathStore = pathStore
 
             VStack {
-                NavigationStack(path: $_pathStore.path) {
+                //NavigationStack(path: $_pathStore.path) {
                     
                 
                 if _dataStore.selectedArtist != nil {
@@ -37,7 +37,7 @@ struct ArtistContentView: View {
                             }
                             
                             
-                        }.navigationDestination(for: Route.self) { route in
+                        }/*.navigationDestination(for: Route.self) { route in
                             switch route {
                             case .artist(let artist):
                                 ArtistContentView()
@@ -47,7 +47,7 @@ struct ArtistContentView: View {
                                 ArtworkContentView()
                             }
 
-                            }
+                            }*/
                     
                 }
                 }
@@ -57,7 +57,7 @@ struct ArtistContentView: View {
             
         }
         
-    }
+    //}
 
 
 #Preview {
